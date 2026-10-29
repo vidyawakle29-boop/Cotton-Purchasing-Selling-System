@@ -1,0 +1,11 @@
+bin/
+obj/
+cotton.db
+cotton_backup.db
+*.db
+*.db-shm
+*.db-wal
+.vs/
+.vscode/
+*.csproj.user
+gitignore
