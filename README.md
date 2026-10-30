@@ -23,15 +23,21 @@ The application helps users maintain purchase records, sales records, farmer det
 - **Offline Functionality:** Manage records locally using SQLite.
 
 ## Project Structure
-- `Program.cs` – Application entry point.
-- `DatabaseHelper.cs` – Database initialization and operations.
-- `Form1.cs` – Main dashboard.
-- `PurchaseForm.cs` – Cotton purchase module.
-- `SaleForm.cs` – Cotton sales module.
-- `FarmerForm.cs` – Farmer registration.
-- `ExpenseForm.cs` – Expense management.
-- `StockForm.cs` – Stock management.
-- `ReportsForm.cs` – Reports.
+- `Program.cs` - Application entry point.
+- `DatabaseHelper.cs` - Database initialization and operations.
+- `Form1.cs` - Main dashboard with live summary cards.
+- `Form1.Designer.cs` - Dashboard UI components.
+- `PurchaseForm.cs` - Cotton purchase module.
+- `SaleForm.cs` - Cotton sales module.
+- `FarmerForm.cs` - Farmer registration.
+- `EditFarmerForm.cs` - Edit farmer information.
+- `ViewFarmersForm.cs` - View registered farmers.
+- `ViewPurchasesForm.cs` - View purchase records.
+- `ViewSalesForm.cs` - View sales records.
+- `ExpenseForm.cs` - Expense management.
+- `ViewExpensesForm.cs` - View expense records.
+- `StockForm.cs` - Stock management.
+- `ReportsForm.cs` - Reports and summaries.
 
 ## How to Run
 1. Download or clone this repository.
@@ -52,3 +58,26 @@ The objective is to reduce manual record keeping, improve data organization, cal
 
 ## Developer
 Developed as a practical live project using C# Windows Forms and SQLite.
+
+## Dashboard Summary
+The dashboard displays live summary information:
+- Total Purchase Amount
+- Total Sales Amount
+- Available Cotton Stock (kg)
+- Total Expenses
+
+The summary values refresh when users return from other modules.
+
+## Additional Project Files
+- `Form1.Designer.cs` - Dashboard UI components.
+- `ViewPurchasesForm.cs` - View purchase records.
+- `ViewSalesForm.cs` - View sales records.
+- `ViewExpensesForm.cs` - View expense records.
+- `ViewFarmersForm.cs` - View registered farmers.
+- `EditFarmerForm.cs` - Edit farmer information.
+
+## Standalone Windows Application
+A self-contained Windows x64 version can be published using:
+
+```powershell
+dotnet publish -c Release -r win-x64 --self-contained true
