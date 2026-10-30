@@ -80,9 +80,66 @@ salesCommand.ExecuteNonQuery();
         using var farmersCommand =
             new SqliteCommand(createFarmersTableQuery, connection);
 
-        farmersCommand.ExecuteNonQuery();
+               farmersCommand.ExecuteNonQuery();
+    }
 
+    // Get total purchase amount
+        
+    // Get total purchase amount
+    public static double GetTotalPurchases()
+    {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
 
+        using var command = new SqliteCommand(
+            "SELECT COALESCE(SUM(TotalAmount), 0) FROM Purchases",
+            connection);
+
+        return Convert.ToDouble(command.ExecuteScalar());
+    }
+
+    // Get total sales amount
+    public static double GetTotalSales()
+    {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
+
+        using var command = new SqliteCommand(
+            "SELECT COALESCE(SUM(TotalAmount), 0) FROM Sales",
+            connection);
+
+        return Convert.ToDouble(command.ExecuteScalar());
+    }
+
+    // Get total expenses
+    public static double GetTotalExpenses()
+    {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
+
+        using var command = new SqliteCommand(
+            "SELECT COALESCE(SUM(Amount), 0) FROM Expenses",
+            connection);
+
+        return Convert.ToDouble(command.ExecuteScalar());
+    }
+
+    // Get available cotton stock in kg
+    public static double GetAvailableStock()
+    {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
+
+        string query = @"
+            SELECT
+                (SELECT COALESCE(SUM(Quantity), 0) FROM Purchases)
+                -
+                (SELECT COALESCE(SUM(Quantity), 0) FROM Sales);";
+
+        using var command = new SqliteCommand(query, connection);
+
+        return Convert.ToDouble(command.ExecuteScalar());
+    
 
     }
 }
